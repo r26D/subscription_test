@@ -4,7 +4,7 @@
 $ asdf install
 $ mix deps.get
 # start redis
-$ docker-compose up redis -d
+$ docker-compose up -d redis
 # start the server
 $ iex -S mix phx.server
 ```
