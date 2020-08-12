@@ -9,8 +9,17 @@ defmodule SubscriptionTest.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
+      # adapter: Phoenix.PubSub.PG2
+      {
+        Phoenix.PubSub,
+        name: SubscriptionTest.PubSub,
+        adapter: Phoenix.PubSub.Redis,
+        node_name: "subscription_test",
+        url: "redis://localhost:6379/0"
+
+      },
       SubscriptionTestWeb.Endpoint,
-      {Absinthe.Subscription, [SubscriptionTestWeb.Endpoint]},
+      {Absinthe.Subscription, SubscriptionTestWeb.Endpoint},
       # Starts a worker by calling: SubscriptionTest.Worker.start_link(arg)
       # {SubscriptionTest.Worker, arg},
     ]

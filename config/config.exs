@@ -12,14 +12,7 @@ config :subscription_test, SubscriptionTestWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NGuFU/Kszq6NM85xXKHkO+obzf6iLKgcRSQG2DL+HvIHJoDDQ4O4GgTsh5ajIcNy",
   render_errors: [view: SubscriptionTestWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [
-    name: SubscriptionTest.PubSub,
-    # adapter: Phoenix.PubSub.PG2
-    adapter: Phoenix.PubSub.Redis,
-    node_name: System.get_env("HOSTNAME") || "subscription_test",
-    url: System.get_env("REDIS_PUBSUB_URL") || "redis://localhost:6379/0"
-  ]
-
+  pubsub_server: SubscriptionTest.PubSub
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
